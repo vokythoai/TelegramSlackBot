@@ -22,5 +22,6 @@ test:
   database: 'TelegramBot'
 
 production:
-  <<: *default
+  adapter: postgresql
+  timeout: 5000
   database: 'TelegramBot'
