@@ -1,1 +1,2 @@
-web: bundle exec rake telegram:bot:poller
+web: bundle exec rails server -p $PORT
+worker: bundle exec rake telegram:bot:poller
