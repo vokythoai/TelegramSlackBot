@@ -58,3 +58,5 @@ gem 'telegram-bot'
 gem 'pry-rails'
 # For postgres
 gem 'pg'
+#For admin
+gem 'rails_admin', '~> 1.3'

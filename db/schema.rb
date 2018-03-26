@@ -10,9 +10,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20180326043720) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bot_responses", force: :cascade do |t|
+    t.integer "response_type"
+    t.string "message"
+    t.string "key_word"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "configs", force: :cascade do |t|
+    t.string "config_type"
+    t.integer "value"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.integer "bot_response_id"
+    t.integer "user_uid"
+    t.integer "status"
+    t.string "name"
+    t.integer "number_violation", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
 end

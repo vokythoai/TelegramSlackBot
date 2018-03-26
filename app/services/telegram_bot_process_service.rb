@@ -1,15 +1,24 @@
 class TelegramBotProcessService
   class << self
     def check_scammer message
-      BLACK_LIST_WORD[:remind].each do |word|
+      BotResponse.remind.pluck(:key_word).each do |word|
         if message["text"].gsub(/\s+/, '') =~ /#{word}/
-          TelegramBotResponse.new.delete_and_send_warning_message(message)
+          bot_response = BotResponse.where(key_word: word).first
+          TelegramBotResponse.new.remind_and_send_warning_message(message, bot_response)
         end
       end
 
-      BLACK_LIST_WORD[:ban].each do |word|
+      BotResponse.ban.pluck(:key_word).each do |word|
         if message["text"].gsub(/\s+/, '') =~ /#{word}/
-          TelegramBotResponse.new.remove_user_from_chat(message)
+          bot_response = BotResponse.where(key_word: word).first
+          TelegramBotResponse.new.remove_user_from_chat(message, bot_response)
+        end
+      end
+
+      BotResponse.remove_message.pluck(:key_word).each do |word|
+        if message["text"].gsub(/\s+/, '') =~ /#{word}/
+          bot_response = BotResponse.where(key_word: word).first
+          TelegramBotResponse.new.delete_message(message, bot_response)
         end
       end
       return false
