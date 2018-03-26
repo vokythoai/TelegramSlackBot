@@ -60,3 +60,5 @@ gem 'pry-rails'
 gem 'pg'
 #For admin
 gem 'rails_admin', '~> 1.3'
+# For monitor app
+gem 'newrelic_rpm'
