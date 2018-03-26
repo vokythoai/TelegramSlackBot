@@ -22,8 +22,4 @@ test:
   database: 'TelegramBot'
 
 production:
-  adapter: postgresql
-  encoding: unicode
-  username: postgres
-  password: postgres
-  database: 'TelegramBot'
+  url: <%= ENV['DATABASE_URL'] %>
