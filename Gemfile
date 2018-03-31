@@ -62,3 +62,8 @@ gem 'pg'
 gem 'rails_admin', '~> 1.3'
 # For monitor app
 gem 'newrelic_rpm'
+# For slack bot
+gem 'slack-ruby-client'
+gem 'slack-ruby-bot'
+gem 'eventmachine'
+gem 'faye-websocket'

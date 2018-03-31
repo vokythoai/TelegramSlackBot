@@ -13,7 +13,8 @@ class TelegramController < Telegram::Bot::UpdatesController
 
   def message(message)
     # message can be also accessed via instance method
-    TelegramBotProcessService.check_scammer(message)
+    bot = BotProcessService.new("TelegramBotResponse")
+    bot.check_scammer(message)
     message == self.payload # true
     # store_message(message['text'])
   end

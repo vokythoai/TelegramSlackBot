@@ -5,7 +5,7 @@ class TelegramBotResponse
     @bot = Telegram::Bot::Client.new(token, username)
   end
 
-  def remove_user_from_chat message, bot_response
+  def remove_user_from_chat message, bot_response, client
     user = User.find_or_initialize_by(user_uid: message["from"]["id"])
 
     user.user_uid = message["from"]["id"]
@@ -37,13 +37,13 @@ class TelegramBotResponse
     end
   end
 
-  def remind_and_send_warning_message message, bot_response
+  def remind_and_send_warning_message message, bot_response, client
     response_text = bot_response.message
     reply_params = {chat_id: message["chat"]["id"], reply_to_message_id: message["message_id"], text: response_text}
     @bot.request(:sendMessage, reply_params)
   end
 
-  def delete_message message, bot_response
+  def delete_message message, bot_response, client
     delete_params = {chat_id: message["chat"]["id"], message_id: message["message_id"]}
     @bot.request(:deleteMessage, delete_params)
     reply_params = {chat_id: message["chat"]["id"], text: response_text}
