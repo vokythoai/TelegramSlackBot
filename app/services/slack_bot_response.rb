@@ -1,6 +1,6 @@
 class SlackBotResponse
   def initialize
-    token = "xoxp-340202531047-339985485190-338957110388-2dcfce175d6ceafab30cf6030fd901d2"
+    token = ENV["SLACK_ADMIN_TOKEN"]
     @logger ||= (Slack::Config.logger || Slack::Logger.default)
     @admin_client = Slack::Web::Client.new(token: token, logger: @logger)
   end
