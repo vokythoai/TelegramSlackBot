@@ -8,7 +8,7 @@ class BotProcessService
     BotResponse.remind.pluck(:key_word).each do |key_word|
       bot_response = BotResponse.where(key_word: key_word).first
       key_word.split(",").each do |word|
-        if message["text"].gsub(/\s+/, '').downcase =~ /#{word.gsub(/\s+/, '').downcase}/ || message["text"].gsub(/\s+/, '').downcase =~ (Regexp.new(word))
+        if message["text"].gsub(/\s+/, '').downcase =~ /#{word.gsub(/\s+/, '').downcase}/ || (message["text"].gsub(/\s+/, '').downcase =~ (Regexp.new(word))).present?
           @service.new.remind_and_send_warning_message(message, bot_response, client)
         end
       end
@@ -17,7 +17,7 @@ class BotProcessService
     BotResponse.ban.pluck(:key_word).each do |key_word|
       bot_response = BotResponse.where(key_word: key_word).first
       key_word.split(",").each do |word|
-        if message["text"].gsub(/\s+/, '').downcase =~ /#{word.gsub(/\s+/, '').downcase}/ || message["text"].gsub(/\s+/, '').downcase =~ (Regexp.new(word))
+        if message["text"].gsub(/\s+/, '').downcase =~ /#{word.gsub(/\s+/, '').downcase}/ || (message["text"].gsub(/\s+/, '').downcase =~ (Regexp.new(word))).present?
           @service.new.remove_user_from_chat(message, bot_response, client)
         end
       end
@@ -26,7 +26,7 @@ class BotProcessService
     BotResponse.remove_message.pluck(:key_word).each do |key_word|
       bot_response = BotResponse.where(key_word: key_word).first
       key_word.split(",").each do |word|
-        if message["text"].gsub(/\s+/, '').downcase =~ /#{word.gsub(/\s+/, '').downcase}/ || message["text"].gsub(/\s+/, '').downcase =~ (Regexp.new(word))
+        if message["text"].gsub(/\s+/, '').downcase =~ /#{word.gsub(/\s+/, '').downcase}/ || (message["text"].gsub(/\s+/, '').downcase =~ (Regexp.new(word))).present?
           @service.new.delete_message(message, bot_response, client)
         end
       end
