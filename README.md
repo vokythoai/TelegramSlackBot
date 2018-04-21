@@ -1,24 +1,14 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A chat bot implement for slack and telegram
 
-Things you may want to cover:
+Response when the message match the words or phrases
 
-* Ruby version
+The bot can kick user, remove, edit message and response for user's command
 
-* System dependencies
+Technical:
 
-* Configuration
+- Ruby On Rails
 
-* Database creation
+- Intergrate Slack API and Telegram API
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
